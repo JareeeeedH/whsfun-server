@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const bcrypt = require('bcrypt');
 
 const drinkerScheme = new mongoose.Schema({
   name: {
@@ -27,5 +28,4 @@ const drinkerScheme = new mongoose.Schema({
 });
 
 const DrinkerModel = mongoose.model('Drinker', drinkerScheme);
-
 module.exports = DrinkerModel;
