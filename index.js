@@ -4,6 +4,7 @@ const app = express();
 
 // 會員相關的route
 const authRouter = require('./routes').authRouter;
+const messageRouter = require('./routes').messageRouter;
 
 // mongoose
 const mongoose = require('mongoose');
@@ -19,6 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // 註冊會員的model
 // const Drinker = require('./models/drinkerModel');
+
+// passport與 passport-jwt設定
+const passport = require('passport');
+// require('./config/passport')(passport);
 
 // 連線DB
 mongoose
@@ -37,6 +42,9 @@ app.get('/', (req, res) => {
 
 // 會員相關api路由
 app.use('/api/member', authRouter);
+
+// po訊息api路由, 需要有會員, 需要有jwt驗證
+app.use('/api/message', messageRouter);
 
 app.listen(3000, () => {
   console.log('running on port of 3000');
