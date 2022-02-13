@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // 註冊會員的model
-const Drinker = require('./models/drinker');
+// const Drinker = require('./models/drinkerModel');
 
 // 連線DB
 mongoose
