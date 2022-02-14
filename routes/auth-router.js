@@ -81,18 +81,19 @@ router.post('/login', async (req, res) => {
         .compare(memberData.password, foundMember.password)
         .then(function (result) {
           if (result) {
-            const { _id, name, email } = foundMember;
 
             // sign JWT
-            const signObject = { _id, name, email };
-            const token = jwt.sign(signObject, 'shhhhh');
-            const tokenTest = jwt.sign({ greeting: 'hellowor' }, 'shhhhh');
+            // jwt.sign後面的秘密號碼要跟 passport設定檔內secretOrKey一樣!
+            const { _id, email, name } = foundMember;
+            const signObject = { _id, email, name };
+            const token = jwt.sign(signObject, process.env.PASSPORT_SECRET);
+
             return res.send({
               message: 'OK',
               token: 'JWT ' + token,
-              tokenTest: 'JWT ' + tokenTest,
               data: foundMember,
             });
+
           }
           // 密碼錯誤
           return res.send('password is wrong');

@@ -23,7 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // passport與 passport-jwt設定
 const passport = require('passport');
-// require('./config/passport')(passport);
+require('./config/jwt-config')(passport)
+
 
 // 連線DB
 mongoose
@@ -44,7 +45,7 @@ app.get('/', (req, res) => {
 app.use('/api/member', authRouter);
 
 // po訊息api路由, 需要有會員, 需要有jwt驗證
-app.use('/api/message', messageRouter);
+app.use('/api/message',passport.authenticate('jwt', { session: false }), messageRouter);
 
 app.listen(3000, () => {
   console.log('running on port of 3000');
