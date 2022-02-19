@@ -6,11 +6,16 @@ router.use((req, res, next) => {
   next();
 });
 
+router.get('/post', async (req, res) => {
+  const allMessage = await messageModel.find({}).populate('speaker')
+  return res.send({message:'ok', data:allMessage});
+});
+
 router.post('/post', async (req, res) => {
-  const { title, content, points } = req.body.postData;
+  const { title, content, points, speaker } = req.body.postData;
 
   try {
-    const newPost = await messageModel({ title, content, points }).save();
+    const newPost = await messageModel({ title, content, points, speaker }).save();
     return res.send({ message: 'ok', data: newPost });
   } catch (err) {
     console.log('post message Error --->', err);

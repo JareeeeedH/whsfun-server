@@ -22,7 +22,7 @@ const messageSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  instructor: {
+  speaker: {
     // 綁上註冊者的id
     type: mongoose.Schema.Types.ObjectId,
     // 與Drinker可以使用於populate

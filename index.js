@@ -21,6 +21,11 @@ app.use(express.urlencoded({ extended: true }));
 // 註冊會員的model
 // const Drinker = require('./models/drinkerModel');
 
+// 訊息的Model
+// const Message = require('./models/messageModel')
+// Message.deleteMany({}).then((d)=>{console.log(d)})
+
+
 // passport與 passport-jwt設定
 const passport = require('passport');
 require('./config/jwt-config')(passport)
