@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const messageSchema = new mongoose.Schema({
   title: {
@@ -26,9 +26,13 @@ const messageSchema = new mongoose.Schema({
     // 綁上註冊者的id
     type: mongoose.Schema.Types.ObjectId,
     // 與Drinker可以使用於populate
-    ref: 'Drinker',
+    ref: "Drinker",
+  },
+  // 若是現有的whiskyFun的資料, 綁上一樣id
+  funId: {
+    type: Number,
   },
 });
 
-const messageModel = mongoose.model('Message', messageSchema);
+const messageModel = mongoose.model("Message", messageSchema);
 module.exports = messageModel;
