@@ -18,7 +18,7 @@ const messageSchema = new mongoose.Schema({
     min: 60,
     max: 100,
   },
-  data: {
+  date: {
     type: Date,
     default: Date.now,
   },
@@ -30,7 +30,16 @@ const messageSchema = new mongoose.Schema({
   },
   // 若是現有的whiskyFun的資料, 綁上一樣id
   funId: {
-    type: Number,
+    type: String,
+  },
+  nose: {
+    type: String,
+  },
+  taste: {
+    type: String,
+  },
+  finish: {
+    type: String,
   },
 });
 
