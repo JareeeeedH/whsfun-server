@@ -45,6 +45,10 @@ app.get("/", (req, res) => {
   console.log("a client come in index router");
   res.send("Welcome to whiskey fun");
 });
+app.get("/test", (req, res) => {
+  console.log("a client come in index router");
+  return res.send({ message: "ok", data: ['123',111,666] });
+});
 
 // 會員相關api路由
 app.use("/api/member", authRouter);
@@ -52,6 +56,6 @@ app.use("/api/member", authRouter);
 // po訊息api路由, 需要有會員, 需要有jwt驗證
 app.use("/api/message", passport.authenticate("jwt", { session: false }), messageRouter);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("running on port of 3000");
 });
