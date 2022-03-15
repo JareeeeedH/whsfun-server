@@ -7,7 +7,7 @@ const authRouter = require("./routes").authRouter;
 const messageRouter = require("./routes").messageRouter;
 
 // mongoose
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 app.use(cors());
 require("dotenv").config();
