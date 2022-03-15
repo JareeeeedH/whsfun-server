@@ -7,7 +7,7 @@ const authRouter = require("./routes").authRouter;
 const messageRouter = require("./routes").messageRouter;
 
 // mongoose
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 app.use(cors());
 require("dotenv").config();
@@ -33,7 +33,7 @@ require("./config/jwt-config")(passport);
 
 // 連線DB
 mongoose
-  .connect(process.env.DB_CONNECT)
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("mongoDB is connected !");
   })
@@ -44,10 +44,6 @@ mongoose
 app.get("/", (req, res) => {
   console.log("a client come in index router");
   res.send("Welcome to whiskey fun");
-});
-app.get("/test", (req, res) => {
-  console.log("a client come in index router");
-  return res.send({ message: "ok", data: ['123',111,666] });
 });
 
 // 會員相關api路由
