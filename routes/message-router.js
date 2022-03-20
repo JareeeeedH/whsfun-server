@@ -27,8 +27,8 @@ require("dotenv").config();
 const passport = require("passport");
 require("../config/jwt-config")(passport);
 
-// post
-router.post("/post", async (req, res) => {
+// post, ##### PO文需要驗證
+router.post("/post", passport.authenticate("jwt", { session: false }), async (req, res) => {
   const { title, content, points, speaker, funId, nose, taste, finish } = req.body.postData;
 
   try {

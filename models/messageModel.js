@@ -15,7 +15,7 @@ const messageSchema = new mongoose.Schema({
   },
   points: {
     type: Number,
-    min: 60,
+    min: 30,
     max: 100,
   },
   date: {
