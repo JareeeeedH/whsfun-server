@@ -20,12 +20,28 @@ router.get("/post/:funId", async (req, res) => {
   return res.send({ message: "ok", data: foundViews });
 });
 
+// 使用.evn
+require("dotenv").config();
+
+// passport與 passport-jwt設定
+const passport = require("passport");
+require("../config/jwt-config")(passport);
+
 // post
 router.post("/post", async (req, res) => {
   const { title, content, points, speaker, funId, nose, taste, finish } = req.body.postData;
 
   try {
-    const newPost = await messageModel({ title, content, points, speaker, funId, nose, taste, finish }).save();
+    const newPost = await messageModel({
+      title,
+      content,
+      points,
+      speaker,
+      funId,
+      nose,
+      taste,
+      finish,
+    }).save();
     return res.send({ message: "ok", data: newPost });
   } catch (err) {
     console.log("post message Error --->", err);

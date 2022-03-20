@@ -49,8 +49,9 @@ app.get("/", (req, res) => {
 // 會員相關api路由
 app.use("/api/member", authRouter);
 
-// po訊息api路由, 需要有會員, 需要有jwt驗證
-app.use("/api/message", passport.authenticate("jwt", { session: false }), messageRouter);
+// message Api route, 不需要jwt
+// app.use("/api/message", passport.authenticate("jwt", { session: false }), messageRouter);
+app.use("/api/message", messageRouter);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("running on port of 3000");
